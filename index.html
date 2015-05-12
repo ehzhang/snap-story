@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Imports -->
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Semantic-UI -->
+    <link rel="stylesheet" href="bower_components/semantic-ui/dist/semantic.min.css">
+    <script src="bower_components/semantic-ui/dist/semantic.min.js"></script>
+
+    <!-- Angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/site.css">
+    <script src="js/site.js"></script>
+  </head>
+  <title>
+    Snap Simulator
+  </title>
+  <body ng-app="snapSim">
+    <div class="container">
+      <h1 id="title">
+        <span class="green">Snap</span>Sim
+      </h1>
+      <div ng-controller="appController">
+        <div class="ui stackable eight wide centered page grid">
+          <div class="eight wide column">
+            <div id="start">
+              <div id="rules" ng-hide="result">
+                <p>
+                  Your goal is to buy a <strong>healthy</strong> meal for your 
+                  family while staying within <strong>budget</strong>.
+                </p>
+                <p>
+                Only buy what you need. If you have <strong>leftover money</strong>, that's <strong>good</strong>.
+                </p>
+                <p>
+                Enter <strong>how many</strong> of each item you want.
+                </p>
+                <p>
+                Use <strong>fractional amounts</strong>, like 0.5 or 0.25, if needed.
+                </p>
+                <br>
+              </div>
+              <button class="ui button"
+                      ng-hide="family"
+                      ng-click="createFamily()">Get Started</button>
+            </div>
+
+            <div ng-show="family && !result">
+
+              <div id="family">
+                <div class="ui segment">
+                  <strong>You have:</strong>
+                  <h1 class="ui money header">
+                    ${{family.money + family.snap}}
+                  </h1>
+                  <div>
+                    for your family of <strong>{{family.size}}</strong> this week.
+                  </div>
+                </div>
+              </div>
+
+              <br>
+
+              <div id="foods">
+                <div class="ui divided list">
+                  <div class="item" ng-repeat="food in foods">
+                    <div class="ui small input right floated">
+                      ${{food.price}} &times; &nbsp;
+                      <input type="number"
+                             placeholder="Quantity"
+                             ng-model="food.qty">
+                    </div>
+                      <div class="content">
+                        <div class="header">
+                          {{food.name}}
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="remaining">
+                ${{moneyRemaining() | number:2}}
+              </div>
+
+              <br>
+
+              <button class="ui fluid green button"
+                      ng-click="checkout()">
+                Checkout
+              </button>
+
+            </div>
+
+            <div id="result" ng-show="result">
+              <div class="ui segment">
+                <div class="ui statistic">
+                  <div class="label">
+                    You Scored:
+                  </div>
+                  <div class="value">
+                    {{result.score | number:2}}
+                  </div>
+                </div>
+
+                <div>
+                  Calories: {{result.calories}} / {{result.caloriesRecommended}}
+                  ({{(result.calories / result.caloriesRecommended) * 100 | number:2}}%)
+                </div>
+
+                <div>
+                  Fat: {{result.fat}} / {{result.fatRecommended}}
+                  ({{(result.fat / result.fatRecommended) * 100 | number:2}}%)
+                </div>
+
+                <div>
+                  Carbs: {{result.carbohydrates}} / {{result.carbohydratesRecommended}}
+                  ({{(result.carbohydrates / result.carbohydratesRecommended) * 100 | number:2}}%)
+                </div>
+
+                <div>
+                  Protein: {{result.protein}} / {{result.proteinRecommended}}
+                  ({{(result.protein / result.proteinRecommended) * 100 | number:2}}%)
+                </div>
+
+
+              </div>
+              <a id="form_link" class="ui fluid green button" ng-href="https://docs.google.com/forms/d/1rY5pMl5I9w7uxSnJTX6MQzilhXWls4HHvVTQv2rtw1w/viewform?entry.514302214={{family.snap + family.money}}&entry.789855753={{family.size}}&entry.1749449689={{result.score}}&entry.609364912={{moneyRemaining()}}&entry.1449103532&entry.1317149081&entry.1978990055" target="_blank">How Did I Do?<a>
+              <button class="ui fluid green button" ng-click="reset()">Play again?</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

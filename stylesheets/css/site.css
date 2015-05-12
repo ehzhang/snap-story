@@ -1,0 +1,48 @@
+body {
+  text-align: center;
+}
+
+body .container {
+  padding-top: 5em;
+  padding-bottom: 5em;
+}
+
+#title {
+  font-size: 3em;
+}
+
+#title .green {
+  color: #5bbd72;
+}
+
+#start {
+  text-align: center;
+}
+
+#family {
+  text-align: center;
+}
+#family .money.header {
+  font-size: 5em;
+  text-align: center;
+  margin: 0;
+}
+
+#foods .ui.input {
+  line-height: 2.5em;
+}
+
+#remaining {
+  position: fixed;
+  font-size: 5em;
+  right: 24px;
+  bottom: 24px;
+}
+
+#result .segment{
+  text-align: center;
+}
+
+#form_link {
+  margin-bottom: 5px;
+}

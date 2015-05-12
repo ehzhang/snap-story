@@ -1,3 +1,3 @@
 [submodule "data"]
 	path = data
-	url = git@github.com:tamijo/snap-sim-data.git
+	url = https://github.com/tamijo/snap-sim-data.git

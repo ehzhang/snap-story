@@ -1,48 +1,57 @@
 body {
-  text-align: center;
-}
-
-body .container {
-  padding-top: 5em;
-  padding-bottom: 5em;
-}
-
-#title {
-  font-size: 3em;
-}
-
-#title .green {
-  color: #5bbd72;
-}
-
-#start {
-  text-align: center;
-}
-
-#family {
-  text-align: center;
-}
-#family .money.header {
-  font-size: 5em;
-  text-align: center;
+  background: white;
+  font-family: 'Playfair Display', serif !important;
+    font-size: 2em;
+    color: #333333;
+  height: 100%;
+  width: 100%;
+  padding: 0;
   margin: 0;
 }
 
-#foods .ui.input {
-  line-height: 2.5em;
+a {
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
 }
 
-#remaining {
+body > .bar {
   position: fixed;
-  font-size: 5em;
-  right: 24px;
-  bottom: 24px;
+  z-index: 9999;
+  width: 100%;
+  border-top: 4px solid #2ecc71;
 }
 
-#result .segment{
-  text-align: center;
+body > .container {
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-#form_link {
-  margin-bottom: 5px;
+.cart {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.story {
+  position: relative;
+  top: 1.5em;
+  left: 20%;
+  width: 80%;
+}
+
+.story > .content {
+  padding: 1em 3em;
+}
+
+.step {
+  padding: 1em 0;
+}
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }

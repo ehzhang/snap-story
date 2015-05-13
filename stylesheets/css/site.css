@@ -1,7 +1,7 @@
 body {
   background: white;
   font-family: 'Playfair Display', serif !important;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #333333;
   height: 100%;
   width: 100%;
@@ -13,6 +13,10 @@ a {
   color: #333;
   text-decoration: none;
   border-bottom: 1px solid #333;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 body > .bar {
@@ -35,15 +39,29 @@ body > .container {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.cart > .content{
+  padding: 1.5em;
+  font-size: .8em;
+}
+
+.cart > .content .header {
+  font-size: 1.2em;
+}
+
+.price {
+  color: #808080;
+}
+
 .story {
   position: relative;
   top: 1.5em;
   left: 20%;
   width: 80%;
+  padding-bottom: 3em;
 }
 
 .story > .content {
-  padding: 1em 3em;
+  padding: 0 3em;
 }
 
 .step {

@@ -28,41 +28,84 @@
   <body ng-app="story">
     <div class="bar"></div>
     <div class="container" ng-controller="storyController">
+
       <div class="cart">
         <div class="content">
           <div class="item" ng-repeat="item in cart">
             <div class="header">
-            {{item.name}}
+            <strong>{{item.name}}</strong>
             </div>
             <div class="description">
-              Price: {{item.price}} Quantity: {{item.qty}}
+              <span class="price">
+                {{item.price | currency:"$"}}
+              </span>
+              &times; {{item.qty}}
+              <br>
+              <a ng-click="removeItem(item, $index)"> Remove one </a>
             </div>
+            <br>
+          </div>
+          <div clas="item" ng-show="cart.length > 0">
+          Total: <strong>{{total() | currency: "$"}}</strong>
           </div>
         </div>
       </div>
+
       <div class="story">
-        <div class="content">
-          <div id="bio" class="step">
-            <div class="content">
-            {{bio}}
-            </div>
-          </div>
-
-          <div class="step" ng-repeat="step in steps">
-            <div class="content">
-            {{step.description}}
-
-            </div>
-          </div>
-
-          <p>
-            <a href="#" ng-click="nextStep()">
-            Continue Shopping
-            </a>
-          </p>
+        <div id="mount" class="content">
+        <!-- Story content builds here -->
         </div>
 
+        <div class="content">
+          <div ng-hide="started">
+            <a href="#" ng-click="start()"> Go Shopping. </a>
+          </div>
+
+          <div id="choices" ng-show="started">
+
+            <div ng-show="selectedChoice">
+              <h3> {{selectedChoice.name}} </h3>
+              <p>
+                {{selectedChoice.description}}
+                <br>
+                <span class="price"> {{selectedChoice.price | currency:"$"}}</span>
+              </p>
+              <p>
+                {{selectedChoice.notes}}
+              </p>
+              <p>
+                <a ng-click="addToCart(selectedChoice)">Put it in the cart.</a>
+              </p>
+            </div>
+
+            <div ng-hide="checkout">
+              <p ng-repeat="choice in choices">
+                <a ng-click="selectChoice(choice)"> {{choice.name}}
+              </p>
+              <p>
+                <a ng-show="choices" ng-click="nextStep()">
+                  Keep shopping.
+                </a>
+              </p>
+            </div>
+
+            <div ng-show="checkout">
+              <p ng-repeat="option in options">
+                <a ng-click="selectOption(option)"> {{option.description}} </a>
+              </p>
+            </div>
+
+            <div ng-show="readyToPay && leftover() >= 0">
+              <p>
+                <a ng-click="pay()"> Pay up. </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
       </div>
+
     </div>
   </body>
 </html>

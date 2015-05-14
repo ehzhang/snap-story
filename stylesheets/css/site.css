@@ -1,7 +1,7 @@
 body {
   background: white;
-  font-family: 'Playfair Display', serif !important;
-    font-size: 1.5em;
+  font-family: 'Merriweather', serif !important;
+    font-size: 1.3em;
     color: #333333;
   height: 100%;
   width: 100%;
@@ -37,6 +37,7 @@ body > .container {
   width: 20%;
   height: 100%;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 
 .cart > .content{
@@ -72,4 +73,8 @@ body > .container {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.right {
+  text-align: right;
 }

@@ -4,7 +4,7 @@
 
     <!-- Imports -->
     <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
 
     <!-- jQuery -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -23,7 +23,7 @@
     <script src="js/site.js"></script>
   </head>
   <title>
-    Hello World
+    Grocery shopping
   </title>
   <body ng-app="story">
     <div class="bar"></div>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="content">
-          <div ng-hide="started">
+          <div ng-show="readyToStart" class="right">
             <a href="#" ng-click="start()"> Go Shopping. </a>
           </div>
 
@@ -82,7 +82,7 @@
               <p ng-repeat="choice in choices">
                 <a ng-click="selectChoice(choice)"> {{choice.name}}
               </p>
-              <p>
+              <p class="right">
                 <a ng-show="choices" ng-click="nextStep()">
                   Keep shopping.
                 </a>
@@ -95,7 +95,7 @@
               </p>
             </div>
 
-            <div ng-show="readyToPay && leftover() >= 0">
+            <div class="right" ng-show="readyToPay && leftover() >= 0">
               <p>
                 <a ng-click="pay()"> Pay up. </a>
               </p>

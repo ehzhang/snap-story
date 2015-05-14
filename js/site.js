@@ -34,6 +34,7 @@ angular.module("story", [])
       });
 
       $scope.start = function(){
+        $scope.readyToStart = false;
         $scope.started = true;
         // Add the first bit of text.
         addParagraph(story[0].description);
@@ -76,13 +77,13 @@ angular.module("story", [])
         for (var i = 0; i < $scope.cart.length; i++){
           if ($scope.cart[i].name == choice.name){
             $scope.cart[i].qty++;
-            // addParagraph("You put another " + choice.name.toLowerCase() + " into your cart.");
+            addParagraph("You put another " + choice.name.toLowerCase() + " into your cart.");
             return;
           }
         }
         choice.qty = 1;
         $scope.cart.push(choice);
-        // addParagraph("You put " + choice.name.toLowerCase() + " in your cart.")
+        addParagraph("You put " + choice.name.toLowerCase() + " in your cart.")
       }
 
       // Calculate the total
@@ -137,8 +138,22 @@ angular.module("story", [])
         introduce();
       }
 
+      var introIdx = 0;
       function introduce(){
-        addParagraph(bio);
+        introduce_h();
+      }
+
+      function introduce_h(){
+        addParagraph(bio[introIdx]);
+        introIdx++;
+        if (introIdx < bio.length){
+          setTimeout(introduce_h, 2000);
+        } else {
+          setTimeout(function(){
+            $scope.readyToStart = true;
+            $scope.$apply();
+          }, 1000)
+        }
       }
 
       function addParagraph(content){
